@@ -1,0 +1,36 @@
+{
+  "name": "@ionited/mask",
+  "version": "0.1.0",
+  "description": "Create your masks easily",
+  "main": "./src/mask.ts",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "webpack serve --mode=development",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ionited/mask.git"
+  },
+  "keywords": [
+    "Mask",
+    "Core"
+  ],
+  "author": "Ion",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ionited/mask/issues"
+  },
+  "homepage": "https://github.com/ionited/mask#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^5.3.1",
+    "ts-loader": "^8.1.0",
+    "typescript": "^4.2.3",
+    "webpack": "^5.30.0",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
