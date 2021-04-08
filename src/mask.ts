@@ -1,7 +1,7 @@
 import { MaskDefault } from './masks/default';
 import { MaskNumber } from './masks/number';
 
-function Mask(el: HTMLInputElement, options: any) {
+export function Mask(el: HTMLInputElement, options: any) {
     for (let o in options) {
         if (Mask.masks[o]) {
             return new Mask.masks[o](el, options[o]);
