@@ -36,6 +36,8 @@
     "webpack-dev-server": "^3.11.2"
   },
   "files": [
-    "dist/**/*"
+    "core/**/*",
+    "dist/**/*",
+    "masks/**/*"
   ]
 }
