@@ -162,7 +162,7 @@ Register and use:
 ```ts
 Mask.register('myMask', MyMask); // Register
 
-Mask({ myMask: '99 / 99' }); // Enjoy you own mask!
+Mask({ myMask: '99 / 99' }); // Enjoy your own mask!
 ```
 
 ## License
