@@ -1,6 +1,6 @@
 {
   "name": "@ionited/mask",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Create your masks easily",
   "main": "./dist/mask.js",
   "types": "./dist/mask.d.ts",
@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "webpack serve --mode=development",
-    "build": "webpack"
+    "modules": "webpack --config=webpack.modules.config.js",
+    "build": "webpack && npm run modules"
   },
   "repository": {
     "type": "git",
