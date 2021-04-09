@@ -1,6 +1,6 @@
 {
   "name": "@ionited/mask",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Create your masks easily",
   "main": "./dist/mask.js",
   "types": "./dist/mask.d.ts",
@@ -9,8 +9,7 @@
   },
   "scripts": {
     "start": "webpack serve --mode=development",
-    "modules": "webpack --config=webpack.modules.config.js",
-    "build": "webpack && npm run modules"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -28,6 +27,7 @@
   "homepage": "https://github.com/ionited/mask#readme",
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
+    "filemanager-webpack-plugin": "^4.0.0",
     "html-webpack-plugin": "^5.3.1",
     "ts-loader": "^8.1.0",
     "typescript": "^4.2.3",
