@@ -1,6 +1,7 @@
 import { MaskData, MaskCore, MaskOptions } from '../core';
 
 export class MaskDefault implements MaskOptions {
+  instance: MaskCore;
   firstInput = 0;
   mask: string;
   maskGroups: any[];
@@ -9,7 +10,7 @@ export class MaskDefault implements MaskOptions {
     this.mask = mask;
     this.maskGroups = this.getMaskGroups();
 
-    new MaskCore(el, this);
+    this.instance = new MaskCore(el, this);
   }
 
   format(data: MaskData) {

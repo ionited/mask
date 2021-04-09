@@ -1,6 +1,6 @@
 {
   "name": "@ionited/mask",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Create your masks easily",
   "main": "./dist/mask.js",
   "types": "./dist/mask.d.ts",

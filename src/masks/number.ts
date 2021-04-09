@@ -8,6 +8,7 @@ interface MaskNumberOptions {
 }
 
 export class MaskNumber implements MaskOptions {
+  instance: MaskCore;
   options: MaskNumberOptions = {
     decimal: 2,
     decimalPoint: ',',
@@ -25,7 +26,7 @@ export class MaskNumber implements MaskOptions {
       };
     }
 
-    new MaskCore(el, this);
+    this.instance = new MaskCore(el, this);
   }
 
   init(data: MaskData) {

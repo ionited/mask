@@ -1,4 +1,5 @@
 export interface MaskOptions {
+  instance: MaskCore;
   init?(data: MaskData): void;
   beforeInput?(data: MaskData): void;
   input?(data: MaskData): void;
@@ -96,7 +97,7 @@ export class MaskCore {
     this.setCursorPosition(this.data.cursorPosition, focus ? 25 : undefined);
   }
 
-  setCursorPosition(index: number, timeout: number = 0) {
+  private setCursorPosition(index: number, timeout: number = 0) {
     if (timeout) {
       setTimeout(() => this.el.setSelectionRange(index, index), timeout);
     } else {

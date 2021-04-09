@@ -75,6 +75,7 @@ The recommended way to do a new mask is writing a class that extends `MaskOption
 
 ```ts
 interface MaskOptions {
+  instance: MaskCore;
   init?(data: MaskData): void;
   beforeInput?(data: MaskData): void;
   input?(data: MaskData): void;
@@ -97,6 +98,7 @@ MaskDefault example:
 import { MaskData, MaskCore, MaskOptions } from '../core';
 
 export class MyMask implements MaskOptions {
+  instance: MaskCore;
   firstInput = 0;
   mask: string;
   maskGroups: any[];
@@ -105,7 +107,7 @@ export class MyMask implements MaskOptions {
     this.mask = mask;
     this.maskGroups = this.getMaskGroups();
 
-    new MaskCore(el, this);
+    this.instance = new MaskCore(el, this);
   }
 
   format(data: MaskData) {
