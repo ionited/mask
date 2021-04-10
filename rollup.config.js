@@ -1,7 +1,7 @@
 import typescript from 'rollup-plugin-typescript2';
-import commonjs from '@rollup/plugin-commonjs';
 import cleaner from 'rollup-plugin-cleaner';
 import copy from 'rollup-plugin-copy';
+import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
 
 export default [{
@@ -19,7 +19,7 @@ export default [{
     }],
     plugins: [
         typescript(),
-        commonjs(),
+        terser(),
         cleaner({ targets: ['./core', './dist', './masks'] })
     ]
 }, {
@@ -37,7 +37,7 @@ export default [{
     }],
     plugins: [
         typescript(),
-        commonjs()
+        terser()
     ]
 }, {
     input: './src/core.ts',
@@ -54,7 +54,12 @@ export default [{
     }],
     plugins: [
         typescript(),
-        commonjs()
+        terser(),
+        copy({
+            targets: [
+                { src: './dist/masks', dest: './' }
+            ]
+        })
     ]
 }, {
     input: './src/mask.ts',
@@ -71,11 +76,17 @@ export default [{
     }],
     plugins: [
         typescript(),
-        commonjs(),
-        cleaner({ targets: ['./dist/masks/masks', './dist/masks/core.d.ts', './dist/masks/mask.d.ts'] }),
+        terser(),
+        cleaner({
+            targets: [
+                './dist/masks/masks',
+                './dist/masks/core.d.ts',
+                './dist/masks/mask.d.ts',
+                './masks/masks'
+            ]
+        }),
         copy({
             targets: [
-                { src: './dist/masks', dest: './masks' },
                 {
                     src: './dist/core**',
                     dest: './core',
