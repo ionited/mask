@@ -9,6 +9,7 @@
     "test": "tests"
   },
   "scripts": {
+    "start": "rollup -c -w",
     "build": "rollup -c"
   },
   "repository": {
