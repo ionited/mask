@@ -41,7 +41,7 @@ export class MaskDefault implements MaskOptions {
     });
 
     data.output = val;
-    data.cursorPosition = data.delete ? Math.max(this.firstInput, lastValidIndex) : Math.max(firstInvalidIndex, lastValidIndex);
+    data.cursorPosition = data.delete ? Math.max(this.firstInput, data.cursorPosition) : Math.max(firstInvalidIndex, lastValidIndex);
   }
   
   private getMaskGroups() {

@@ -41,7 +41,7 @@ export class MaskNumber implements MaskOptions {
 
     data.input = input ? (
       decimal === -1 ? 
-        `${integer ? integer : '0'}${this.getDecimal()}` :
+        `${integer ? integer.substr(0, integer.length - this.options.decimal) : '0'}${this.getDecimal()}` :
         `${integer ? integer : '0'}${this.getDecimal(input.substr(decimal + 1, this.options.decimal))}`
     ) : `0${this.getDecimal()}`;
   }
@@ -59,7 +59,7 @@ export class MaskNumber implements MaskOptions {
 
     if (data.focus) {
       data.cursorPosition = data.output.length - (this.options.decimal + 1);
-    } else if (data.cursorPosition < data.inputRaw.length - this.options.decimal) {
+    } else if (data.cursorPosition < data.inputRaw.length - this.options.decimal && !data.delete) {
       data.cursorPosition = data.output.length - (data.inputRaw.length - data.cursorPosition);
     }
   }
