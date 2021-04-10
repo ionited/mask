@@ -17,5 +17,3 @@ Mask.register = function(name: string, mask: any) {
 
 Mask.register('mask', MaskDefault);
 Mask.register('number', MaskNumber);
-
-(window as any).Mask = Mask;
