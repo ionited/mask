@@ -68,6 +68,10 @@ export class MaskCore {
   }
 
   private input(e: Event) {
+    if ((e as any).__mask__) {
+      return e.preventDefault();
+    }
+
     this.data.delete = 
       (e as InputEvent).inputType === 'deleteContentBackward' ||
       (e as InputEvent).inputType === 'deleteContentForward'
@@ -85,6 +89,8 @@ export class MaskCore {
     }
 
     this.format();
+
+    this.dispatchEvent();
   }
 
   private format(focus = false) {
@@ -103,5 +109,15 @@ export class MaskCore {
     } else {
       this.el.setSelectionRange(index, index);
     }
+  }
+
+  private dispatchEvent() {
+    const event = document.createEvent('Event');
+    
+    event.initEvent('input', true, true);
+    (event as any).value = this.data.output;
+    (event as any).__mask__ = true;
+
+    this.el.dispatchEvent(event);
   }
 }
