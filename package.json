@@ -1,6 +1,6 @@
 {
   "name": "@ionited/mask",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "Create your masks easily",
   "main": "./dist/mask.js",
   "module": "./dist/mask.esm.js",

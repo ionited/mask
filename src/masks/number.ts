@@ -15,6 +15,8 @@ export class MaskNumber implements MaskOptions {
     prefix: '',
     thousandPoint: '.'
   };
+  
+  private integer: string | null = null;
 
   constructor(el: HTMLInputElement, options: true | MaskNumberOptions) {
     if (typeof options === 'object') {
@@ -39,6 +41,8 @@ export class MaskNumber implements MaskOptions {
       integer = input.substring(0, decimal === -1 ? input.length : decimal).replace(/^0+/, '')
     ;
 
+    this.integer = integer;
+
     data.input = input ? (
       decimal === -1 ? 
         `${integer ? integer.substr(0, integer.length - this.options.decimal) : '0'}${this.getDecimal()}` :
@@ -59,8 +63,16 @@ export class MaskNumber implements MaskOptions {
 
     if (data.focus) {
       data.cursorPosition = data.output.length - (this.options.decimal + 1);
-    } else if (data.cursorPosition < data.inputRaw.length - this.options.decimal && !data.delete) {
-      data.cursorPosition = data.output.length - (data.inputRaw.length - data.cursorPosition);
+    } else if (data.cursorPosition < data.inputRaw.length - this.options.decimal) {
+      let cursorPosition = data.output.length - (data.inputRaw.length - data.cursorPosition);
+
+      cursorPosition = cursorPosition < 0 ? 0 : cursorPosition;
+
+      data.cursorPosition = data.delete ? Math.min(data.cursorPosition, cursorPosition) : cursorPosition;
+
+      if (data.cursorPosition < this.options.prefix.length + 1) {
+        data.cursorPosition = this.options.prefix.length + (this.integer ? 0 : 1);
+      }
     }
   }
 
