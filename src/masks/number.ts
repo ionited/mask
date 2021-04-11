@@ -33,6 +33,8 @@ export class MaskNumber implements MaskOptions {
 
   init(data: MaskData) {
     data.input = data.input ? data.input : `0${this.getDecimal()}`;
+
+    this.input(data);
   }
 
   input(data: MaskData) {
@@ -45,7 +47,7 @@ export class MaskNumber implements MaskOptions {
 
     data.input = input ? (
       decimal === -1 ? 
-        `${integer ? integer.substr(0, integer.length - this.options.decimal) : '0'}${this.getDecimal()}` :
+        `${integer ? integer.substr(0, integer.length - (this.options.decimal ?? 0)) : '0'}${this.getDecimal(integer.substr(-(this.options.decimal ?? 0)))}` :
         `${integer ? integer : '0'}${this.getDecimal(input.substr(decimal + 1, this.options.decimal))}`
     ) : `0${this.getDecimal()}`;
   }
@@ -62,8 +64,8 @@ export class MaskNumber implements MaskOptions {
     data.output = this.options.prefix + value.replace(new RegExp(`\\d(?=(\\d{3})+\\${this.options.decimalPoint})`, 'g'), `$&${this.options.thousandPoint}`);
 
     if (data.focus) {
-      data.cursorPosition = data.output.length - (this.options.decimal + 1);
-    } else if (data.cursorPosition < data.inputRaw.length - this.options.decimal) {
+      data.cursorPosition = data.output.length - (this.options.decimal + (this.options.decimal ? 1 : 0));
+    } else if (data.cursorPosition < data.inputRaw.length - this.options.decimal || !this.options.decimal) {
       let cursorPosition = data.output.length - (data.inputRaw.length - data.cursorPosition);
 
       cursorPosition = cursorPosition < 0 ? 0 : cursorPosition;
