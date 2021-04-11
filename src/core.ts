@@ -89,8 +89,6 @@ export class MaskCore {
     }
 
     this.format();
-
-    this.dispatchEvent();
   }
 
   private format(focus = false) {
@@ -101,6 +99,10 @@ export class MaskCore {
     this.el.value = this.data.output;
 
     this.setCursorPosition(this.data.cursorPosition, focus ? 25 : undefined);
+
+    if (!focus) {
+      this.dispatchEvent();
+    }
   }
 
   private setCursorPosition(index: number, timeout: number = 0) {
