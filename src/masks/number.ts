@@ -47,7 +47,7 @@ export class MaskNumber implements MaskOptions {
 
     data.input = input ? (
       decimal === -1 ? 
-        `${integer ? integer : '0'}${this.getDecimal()}`
+        `${integer ? integer.substr(0, integer.length - (this.options.decimal ?? 0)) : '0'}${this.getDecimal(integer.substr(-(this.options.decimal ?? 0)))}`
         : `${integer ? integer : '0'}${this.getDecimal(input.substr(decimal + 1, this.options.decimal))}`
     ) : `0${this.getDecimal()}`;
   }
