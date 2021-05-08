@@ -41,11 +41,9 @@ export class MaskNumber implements MaskOptions {
     } else {
       data.input = `0${this.getDecimal()}`;
     }
-
-    this.input(data);
   }
 
-  input(data: MaskData) {
+  format(data: MaskData) {
     const input = data.input.replace(new RegExp(`[^0-9\\${this.options.decimalPoint}]`, 'g'), ''),
       decimal = input.indexOf(this.options.decimalPoint),
       integer = input.substring(0, decimal === -1 ? input.length : decimal).replace(/^0+/, '')
@@ -58,18 +56,14 @@ export class MaskNumber implements MaskOptions {
         `${integer ? integer.substr(0, integer.length - (this.options.decimal ?? 0)) : '0'}${this.getDecimal(integer.substr(-(this.options.decimal ?? 0)))}`
         : `${integer ? integer : '0'}${this.getDecimal(input.substr(decimal + 1))}`
     ) : `0${this.getDecimal()}`;
-  }
 
-  format(data: MaskData) {
-    let value = data.input;
-
-    value = value.split('').reverse().join('')
+    data.input = data.input.split('').reverse().join('')
       .replace(this.options.decimalPoint, '#')
       .split('').reverse().join('')
       .replace(new RegExp(`\\${this.options.decimal}`, 'g'), '').replace('#', this.options.decimalPoint)
     ;
 
-    data.output = this.options.prefix + value.replace(new RegExp(`\\d(?=(\\d{3})+\\${this.options.decimalPoint})`, 'g'), `$&${this.options.thousandPoint}`);
+    data.output = this.options.prefix + data.input.replace(new RegExp(`\\d(?=(\\d{3})+\\${this.options.decimalPoint})`, 'g'), `$&${this.options.thousandPoint}`);
 
     if (data.focus) {
       data.cursorPosition = data.output.length - (this.options.decimal + (this.options.decimal ? 1 : 0));

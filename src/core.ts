@@ -60,8 +60,6 @@ export class MaskCore {
   private beforeInput() {
     const cursorPosition = this.data.cursorPosition = this.el.selectionStart ?? 0;
 
-    this.data.input = this.el.value;
-
     this.options.beforeInput && this.options.beforeInput(this.data);
 
     if (this.data.cursorPosition != cursorPosition) {
@@ -95,6 +93,10 @@ export class MaskCore {
 
   private format(focus = false) {
     this.data.focus = focus;
+
+    if (focus) {
+      this.data.input = this.el.value;
+    }
 
     this.options.format(this.data);
 
