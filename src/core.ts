@@ -22,6 +22,7 @@ export class MaskCore {
 
   private inputFunc = this.input.bind(this);
   private formatFunc = this.format.bind(this, true);
+  private isMobile = false;
 
   constructor(el: HTMLInputElement, options: MaskOptions) {
     this.el = el;
@@ -35,6 +36,8 @@ export class MaskCore {
       inputRaw: '',
       output: ''
     };
+
+    this.isMobile = /Android/i.test(navigator.userAgent);
 
     this.init();
   }
@@ -109,8 +112,8 @@ export class MaskCore {
     }
   }
 
-  private setCursorPosition(index: number, timeout: number = 0) {
-    if (timeout) {
+  private setCursorPosition(index: number, timeout?: number) {
+    if (timeout || (this.isMobile && this.data.delete)) {
       setTimeout(() => this.el.setSelectionRange(index, index), timeout);
     } else {
       this.el.setSelectionRange(index, index);
