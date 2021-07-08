@@ -14,10 +14,6 @@ Choose your favorite option below:
 npm i @ionited/mask
 ```
 
-### Download
-
-[mask.js](dist/mask.js)
-
 ### Get from UNPKG
 
 [https://unpkg.com/@ionited/mask@latest/dist/mask.js](https://unpkg.com/@ionited/mask@latest/dist/mask.js)
