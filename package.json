@@ -5,9 +5,6 @@
   "main": "./dist/mask.js",
   "module": "./dist/mask.esm.js",
   "types": "./dist/mask.d.ts",
-  "directories": {
-    "test": "tests"
-  },
   "scripts": {
     "start": "rollup -c -w",
     "build": "rollup -c"
