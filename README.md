@@ -54,6 +54,7 @@ Mask(el: string, { number: true | MaskNumberOptions });
 interface MaskNumberOptions {
   decimal: number;
   decimalPoint: string;
+  end: boolean;
   prefix: string;
   thousandPoint: string;
 }
