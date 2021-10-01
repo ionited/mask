@@ -7,7 +7,8 @@
   "types": "./dist/mask.d.ts",
   "scripts": {
     "start": "rollup -c -w",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   },
   "homepage": "https://github.com/ionited/mask#readme",
   "devDependencies": {
+    "conventional-changelog-cli": "^2.1.1",
     "rollup": "^2.58.0",
     "rollup-plugin-cleaner": "^1.0.0",
     "rollup-plugin-copy": "^3.4.0",
