@@ -3,9 +3,7 @@ import { MaskNumber } from './masks/number';
 
 export function Mask(el: HTMLInputElement, options: any) {
     for (let o in options) {
-        if (Mask.masks[o]) {
-            return new Mask.masks[o](el, options[o]);
-        }
+        if (Mask.masks[o]) return new Mask.masks[o](el, options[o]);
     }
 }
 

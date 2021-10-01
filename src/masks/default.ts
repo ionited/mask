@@ -1,6 +1,7 @@
 import { MaskData, MaskCore, MaskOptions } from '../core';
 
 export class MaskDefault implements MaskOptions {
+  
   instance: MaskCore;
   firstInput = 0;
   mask: string;
@@ -14,7 +15,7 @@ export class MaskDefault implements MaskOptions {
   }
 
   format(data: MaskData) {
-    let 
+    let
       val = '',
       firstInvalidIndex = 0,
       lastValidIndex = 0
@@ -26,18 +27,11 @@ export class MaskDefault implements MaskOptions {
 
         val = val + (valid ? data.input[index] : '_');
 
-        if (valid) {
-          lastValidIndex = index + 1;
-        } else if (!firstInvalidIndex) {
-          firstInvalidIndex = index;
-        }
+        if (valid)lastValidIndex = index + 1;
+        else if (!firstInvalidIndex) firstInvalidIndex = index;
 
-        if (!this.firstInput) {
-          this.firstInput = index; 
-        }
-      } else {
-        val = val + m;
-      }
+        if (!this.firstInput) this.firstInput = index;
+      } else val = val + m;
     });
 
     data.output = val;
@@ -48,15 +42,12 @@ export class MaskDefault implements MaskOptions {
     let maskGroups = [] as any[];
 
     for (let i = 0; i < this.mask.length; i = i + 1) {
-      if (this.mask[i] === '9') {
-        maskGroups.push(/^[0-9]$/);
-      } else if (this.mask[i] === 'A') {
-        maskGroups.push(/^[A-Za-zÀ-ÿ]$/);
-      } else {
-        maskGroups.push(this.mask[i]);
-      }
+      if (this.mask[i] === '9') maskGroups.push(/^[0-9]$/);
+      else if (this.mask[i] === 'A') maskGroups.push(/^[A-Za-zÀ-ÿ]$/);
+      else maskGroups.push(this.mask[i]);
     }
 
     return maskGroups;
   }
+
 }

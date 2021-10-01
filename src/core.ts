@@ -20,6 +20,7 @@ export interface MaskData {
 }
 
 export class MaskCore {
+
   el: HTMLInputElement;
   options: MaskOptions;
   data: MaskData;
@@ -78,15 +79,11 @@ export class MaskCore {
 
     this.options.beforeInput && this.options.beforeInput(this.data);
 
-    if (this.data.cursorPosition != cursorPosition) {
-      this.setCursorPosition(this.data.cursorPosition);
-    }
+    if (this.data.cursorPosition != cursorPosition) this.setCursorPosition(this.data.cursorPosition);
   }
 
   private input(e: Event) {
-    if ((e as any).__mask__) {
-      return e.preventDefault();
-    }
+    if ((e as any).__mask__) return e.preventDefault();
 
     this.data.delete = 
       (e as InputEvent).inputType === 'deleteContentBackward' ||
@@ -100,9 +97,7 @@ export class MaskCore {
 
     this.options.input && this.options.input(this.data);
 
-    if (this.data.cursorPosition != cursorPosition) {
-      this.setCursorPosition(this.data.cursorPosition);
-    }
+    if (this.data.cursorPosition != cursorPosition) this.setCursorPosition(this.data.cursorPosition);
 
     this.format();
   }
@@ -110,9 +105,7 @@ export class MaskCore {
   private format(focus = false) {
     this.data.focus = focus;
 
-    if (focus) {
-      this.data.input = this.el.value;
-    }
+    if (focus) this.data.input = this.el.value;
 
     this.options.format(this.data);
 
@@ -124,9 +117,7 @@ export class MaskCore {
 
     this.setCursorPosition(this.data.cursorPosition, focus ? 25 : undefined);
 
-    if (!focus) {
-      this.dispatchEvent();
-    }
+    if (!focus) this.dispatchEvent();
   }
 
   private focus() {
@@ -154,20 +145,18 @@ export class MaskCore {
   }
 
   private setCursorPosition(index: number, timeout?: number) {
-    if (timeout || (this.isMobile && this.data.delete)) {
-      setTimeout(() => this.el.setSelectionRange(index, index), timeout);
-    } else {
-      this.el.setSelectionRange(index, index);
-    }
+    if (timeout || (this.isMobile && this.data.delete)) setTimeout(() => this.el.setSelectionRange(index, index), timeout);
+    else this.el.setSelectionRange(index, index);
   }
 
   private dispatchEvent() {
-    const event = document.createEvent('Event');
+    const e = document.createEvent('Event');
     
-    event.initEvent('input', true, true);
-    (event as any).value = this.data.output;
-    (event as any).__mask__ = true;
+    e.initEvent('input', true, true);
+    (e as any).value = this.data.output;
+    (e as any).__mask__ = true;
 
-    this.el.dispatchEvent(event);
+    this.el.dispatchEvent(e);
   }
+
 }
