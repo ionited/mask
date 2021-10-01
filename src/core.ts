@@ -109,7 +109,7 @@ export class MaskCore {
 
     this.options.format(this.data);
 
-    this.update(true);
+    this.update(focus);
   }
 
   private update(focus = false) {
