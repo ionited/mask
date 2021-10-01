@@ -4,6 +4,10 @@ export interface MaskOptions {
   beforeInput?(data: MaskData): void;
   input?(data: MaskData): void;
   format(data: MaskData): void;
+  focus?(data: MaskData): void;
+  blur?(data: MaskData): void;
+  mouseover?(data: MaskData): void;
+  mouseout?(data: MaskData): void;
 }
 
 export interface MaskData {
@@ -21,7 +25,10 @@ export class MaskCore {
   data: MaskData;
 
   private inputFunc = this.input.bind(this);
-  private formatFunc = this.format.bind(this, true);
+  private focusFunc = this.focus.bind(this);
+  private blurFunc = this.blur.bind(this);
+  private mouseoverFunc = this.mouseover.bind(this);
+  private mouseoutFunc = this.mouseout.bind(this);
   private isMobile = false;
 
   constructor(el: HTMLInputElement, options: MaskOptions) {
@@ -45,7 +52,10 @@ export class MaskCore {
   private init() {
     this.el.addEventListener('input', this.inputFunc);
     this.el.addEventListener('paste', this.inputFunc);
-    this.el.addEventListener('focus', this.formatFunc);
+    this.el.addEventListener('focus', this.focusFunc);
+    this.el.addEventListener('blur', this.blurFunc);
+    this.el.addEventListener('mouseover', this.mouseoverFunc);
+    this.el.addEventListener('mouseout', this.mouseoutFunc);
 
     this.data.input = this.el.value;
 
@@ -57,7 +67,10 @@ export class MaskCore {
   destroy() {
     this.el.removeEventListener('input', this.inputFunc);
     this.el.removeEventListener('paste', this.inputFunc);
-    this.el.removeEventListener('focus', this.formatFunc);
+    this.el.removeEventListener('focus', this.focusFunc);
+    this.el.removeEventListener('blur', this.blurFunc);
+    this.el.removeEventListener('mouseover', this.mouseoverFunc);
+    this.el.removeEventListener('mouseout', this.mouseoutFunc);
   }
 
   private beforeInput() {
@@ -103,6 +116,10 @@ export class MaskCore {
 
     this.options.format(this.data);
 
+    this.update(true);
+  }
+
+  private update(focus = false) {
     this.el.value = this.data.output;
 
     this.setCursorPosition(this.data.cursorPosition, focus ? 25 : undefined);
@@ -110,6 +127,30 @@ export class MaskCore {
     if (!focus) {
       this.dispatchEvent();
     }
+  }
+
+  private focus() {
+    this.options.focus && this.options.focus(this.data);
+
+    this.format(true);
+  }
+
+  private blur() {
+    this.options.blur && this.options.blur(this.data);
+
+    this.update();
+  }
+
+  private mouseover() {
+    this.options.mouseover && this.options.mouseover(this.data);
+
+    this.update();
+  }
+
+  private mouseout() {
+    this.options.mouseout && this.options.mouseout(this.data);
+
+    this.update();
   }
 
   private setCursorPosition(index: number, timeout?: number) {

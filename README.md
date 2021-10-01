@@ -77,6 +77,10 @@ interface MaskOptions {
   beforeInput?(data: MaskData): void;
   input?(data: MaskData): void;
   format(data: MaskData): void;
+  focus?(data: MaskData): void;
+  blur?(data: MaskData): void;
+  mouseover?(data: MaskData): void;
+  mouseout?(data: MaskData): void;
 }
 
 interface MaskData {
