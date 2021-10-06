@@ -1,3 +1,20 @@
+# 0.4.0 (2021-10-06)
+
+### Bug Fixes
+
+* only update cursor on focus ([de251f1](https://github.com/ionited/mask/commit/de251f19897b8e6c0852d356f4e0b7bdc48741e0))
+* update input value on events ([1027af1](https://github.com/ionited/mask/commit/1027af18a6b67e78a43cb53746b505faae2f81d4))
+* refactor(MaskCore)!: don't call format on init ([6cfa0a8](https://github.com/ionited/mask/commit/6cfa0a8591b6402002ef0037590730474321ae85))
+
+### Features
+
+* **MaskDefault, MaskNumber:** add allowEmpty option ([92b222c](https://github.com/ionited/mask/commit/92b222ccb28b5dccc5f27be8a5dfd7cae63afbd6))
+
+### BREAKING CHANGES
+
+* you need to call format manually on init
+
+
 # 0.3.0 (2021-10-01)
 
 ### Bug Fixes
