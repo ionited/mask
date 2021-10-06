@@ -62,7 +62,7 @@ export class MaskCore {
 
     this.options.init && this.options.init(this.data);
     
-    this.format();
+    this.el.value = this.data.output;
   }
 
   destroy() {
