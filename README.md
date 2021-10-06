@@ -34,7 +34,12 @@ Mask(document.querySelector('#input2'), { number: true }); // To use MaskNumber
 A simple mask that receives numbers, letters or other symbols
 
 ```ts
-Mask(el: string, { mask: string });
+Mask(el: string, { mask: string | MaskDefaultOptions });
+
+interface MaskDefaultOptions {
+  allowEmpty?: boolean;
+  mask: string;
+}
 ```
 
 | Symbol   | Pattern          | Description
@@ -52,6 +57,7 @@ A mask for monetary and decimal values
 Mask(el: string, { number: true | MaskNumberOptions });
 
 interface MaskNumberOptions {
+  allowEmpty: boolean;
   decimal: number;
   decimalPoint: string;
   end: boolean;
@@ -103,6 +109,10 @@ export class MyMask implements MaskOptions {
 
   constructor(el: HTMLInputElement) {
     this.instance = new MaskCore(el, this);
+  }
+
+  init(data: MaskData) {
+    this.format(data);
   }
 
   format(data: MaskData) {
