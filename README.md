@@ -126,7 +126,7 @@ Register and use:
 ```ts
 Mask.register('myMask', MyMask); // Register
 
-Mask({ myMask: true }); // Enjoy your own mask!
+Mask(document.querySelector('#myMask'), { myMask: true }); // Enjoy your own mask!
 ```
 
 ## License
