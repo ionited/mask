@@ -110,12 +110,14 @@ export class MaskCore {
     this.update(focus);
   }
 
-  private update(focus = false) {
+  private update(focus = false, changeCursor = true) {
     this.el.value = this.data.output;
 
-    this.setCursorPosition(this.data.cursorPosition, focus ? 25 : undefined);
+    if (changeCursor) {
+      this.setCursorPosition(this.data.cursorPosition, focus ? 25 : undefined);
 
-    if (!focus) this.dispatchEvent();
+      if (!focus) this.dispatchEvent();
+    }
   }
 
   private focus() {
@@ -131,13 +133,13 @@ export class MaskCore {
     
     this.options.blur && this.options.blur(this.data);
 
-    this.update();
+    this.update(false, false);
   }
 
   private mouseover() {
     this.options.mouseover && this.options.mouseover(this.data);
 
-    this.update();
+    this.update(false, false);
   }
 
   private mouseout() {
@@ -145,7 +147,7 @@ export class MaskCore {
 
     this.options.mouseout && this.options.mouseout(this.data);
 
-    this.update();
+    this.update(false, false);
   }
 
   private setCursorPosition(index: number, timeout?: number) {
