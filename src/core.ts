@@ -105,8 +105,6 @@ export class MaskCore {
   private format(focus = false) {
     this.data.focus = focus;
 
-    if (focus) this.data.input = this.el.value;
-
     this.options.format(this.data);
 
     this.update(focus);
@@ -121,12 +119,16 @@ export class MaskCore {
   }
 
   private focus() {
+    this.data.input = this.el.value;
+
     this.options.focus && this.options.focus(this.data);
 
     this.format(true);
   }
 
   private blur() {
+    this.data.input = this.el.value;
+    
     this.options.blur && this.options.blur(this.data);
 
     this.update();
@@ -139,6 +141,8 @@ export class MaskCore {
   }
 
   private mouseout() {
+    this.data.input = this.el.value;
+
     this.options.mouseout && this.options.mouseout(this.data);
 
     this.update();
