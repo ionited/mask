@@ -1,6 +1,7 @@
 import { MaskData, MaskCore, MaskOptions } from '../core';
 
 interface MaskNumberOptions {
+  allowEmpty: boolean;
   decimal: number;
   decimalPoint: string;
   end: boolean;
@@ -12,6 +13,7 @@ export class MaskNumber implements MaskOptions {
 
   instance: MaskCore;
   options: MaskNumberOptions = {
+    allowEmpty: false,
     decimal: 2,
     decimalPoint: ',',
     end: false,
@@ -19,9 +21,12 @@ export class MaskNumber implements MaskOptions {
     thousandPoint: '.'
   };
 
+  private default = '';
+
   constructor(el: HTMLInputElement, options: true | MaskNumberOptions) {
     if (typeof options === 'object')
       this.options = {
+        allowEmpty: options.allowEmpty,
         decimal: options.decimal ?? 2,
         decimalPoint: options.decimalPoint ? options.decimalPoint : ',',
         end: options.end ?? false,
@@ -30,16 +35,21 @@ export class MaskNumber implements MaskOptions {
       };
 
     this.instance = new MaskCore(el, this);
+    this.default = `0${this.getDecimal()}`;
   }
 
   init(data: MaskData) {
-    if (data.input) {
-      data.input = data.input.replace(/\./g, this.options.decimalPoint);
+    if (data.input || !this.options.allowEmpty) {
+      if (data.input) {
+        data.input = data.input.replace(/\./g, this.options.decimalPoint);
       
-      const decimal = data.input.indexOf(this.options.decimalPoint);
+        const decimal = data.input.indexOf(this.options.decimalPoint);
 
-      data.input = `${data.input.substring(0, decimal === -1 ? data.input.length : decimal)}${this.getDecimal(decimal === -1 ? '' : data.input.substr(decimal + 1))}`;
-    } else data.input = `0${this.getDecimal()}`;
+        data.input = `${data.input.substring(0, decimal === -1 ? data.input.length : decimal)}${this.getDecimal(decimal === -1 ? '' : data.input.substr(decimal + 1))}`;
+      } else data.input = `0${this.getDecimal()}`;
+    
+      this.format(data);
+    }
   }
 
   format(data: MaskData) {
@@ -84,6 +94,18 @@ export class MaskNumber implements MaskOptions {
 
       if (data.cursorPosition < this.options.prefix.length + 1) data.cursorPosition = this.options.prefix.length + (integer ? 0 : 1);
     } else if (this.options.end) data.cursorPosition = data.output.length - (data.inputRaw.length - data.cursorPosition);
+  }
+
+  blur(data: MaskData) {
+    if (this.options.allowEmpty && data.input === this.default) data.output = '';
+  }
+
+  mouseover(data: MaskData) {
+    if (this.options.allowEmpty) this.format(data);
+  }
+
+  mouseout(data: MaskData) {
+    if (this.options.allowEmpty && data.input === this.default && document.activeElement != this.instance.el) data.output = '';
   }
 
   private getDecimal(decimal = '') {
