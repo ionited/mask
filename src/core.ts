@@ -114,7 +114,7 @@ export class MaskCore {
     if (changeCursor) {
       this.setCursorPosition(this.data.cursorPosition, focus ? 25 : undefined);
 
-      if (!focus) this.dispatchEvent();
+      this.dispatchEvent();
     }
   }
 
