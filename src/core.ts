@@ -52,7 +52,6 @@ export class MaskCore {
 
   private init() {
     this.el.addEventListener('input', this.inputFunc);
-    this.el.addEventListener('paste', this.inputFunc);
     this.el.addEventListener('focus', this.focusFunc);
     this.el.addEventListener('blur', this.blurFunc);
     this.el.addEventListener('mouseover', this.mouseoverFunc);
@@ -67,7 +66,6 @@ export class MaskCore {
 
   destroy() {
     this.el.removeEventListener('input', this.inputFunc);
-    this.el.removeEventListener('paste', this.inputFunc);
     this.el.removeEventListener('focus', this.focusFunc);
     this.el.removeEventListener('blur', this.blurFunc);
     this.el.removeEventListener('mouseover', this.mouseoverFunc);
