@@ -42,20 +42,31 @@ export class MaskDefault implements MaskOptions {
     let
       val = '',
       firstInvalidIndex: number = -1,
-      lastValidIndex = 0
+      lastValidIndex = 0,
+      index = 0
     ;
 
-    this.maskGroups.forEach((m, index) => {
+    this.maskGroups.forEach((m, maskIndex) => {
       if (m instanceof RegExp) {
-        const valid = m.test(data.input[index]);
+        let valid = false;
 
-        val = val + (valid ? data.input[index] : '_');
+        do {
+          valid = m.test(data.input[index]);
 
-        if (valid) lastValidIndex = index + 1;
-        else if (firstInvalidIndex === -1) firstInvalidIndex = index;
+          if (valid) lastValidIndex = maskIndex + 1;
+          else if (firstInvalidIndex === -1) firstInvalidIndex = maskIndex;
 
-        if (this.firstInput === undefined) this.firstInput = index;
-      } else val = val + m;
+          if (this.firstInput === undefined) this.firstInput = maskIndex;
+
+          index++;
+        } while(!valid && data.input[index]);
+
+        val = val + (valid ? data.input[index - 1] : '_');
+      } else {
+        val = val + m;
+
+        if (data.input[index] === m) index++;
+      }
     });
 
     data.output = val;
