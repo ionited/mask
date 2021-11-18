@@ -1,3 +1,14 @@
+## [0.4.1](https://github.com/ionited/mask/compare/0.4.0...0.4.1) (2021-11-18)
+
+
+### Bug Fixes
+
+* **MaskDefault:** cursor position ([586d633](https://github.com/ionited/mask/commit/586d6331447b8fa946a7ebb58f1ea245b540a677))
+* **MaskDefault:** improve format logic ([5d5739a](https://github.com/ionited/mask/commit/5d5739a96bd83aa9a37c26be1e1ac52cb3ed79fb))
+* **MaskCore:** ignore past event ([7422eab](https://github.com/ionited/mask/commit/7422eaba1d67776cc163b5c5a0e61cf38373ff6c))
+* **MaskCore:** always dispatch event ([ae3ff7c](https://github.com/ionited/mask/commit/ae3ff7cde145235078631917177279b9c2034edd))
+* **MaskCore:** always update ([75a3ffb](https://github.com/ionited/mask/commit/75a3ffbcf6c87e5cd803118fbf9584af48e57e29))
+
 # 0.4.0 (2021-10-06)
 
 ### Bug Fixes
