@@ -62,6 +62,8 @@ export class MaskCore {
     this.options.init && this.options.init(this.data);
     
     this.el.value = this.data.output;
+
+    this.update();
   }
 
   destroy() {
@@ -111,11 +113,9 @@ export class MaskCore {
   private update(focus = false, changeCursor = true) {
     this.el.value = this.data.output;
 
-    if (changeCursor) {
-      this.setCursorPosition(this.data.cursorPosition, focus ? 25 : undefined);
+    if (changeCursor) this.setCursorPosition(this.data.cursorPosition, focus ? 25 : undefined);
 
-      this.dispatchEvent();
-    }
+    this.dispatchEvent();
   }
 
   private focus() {
