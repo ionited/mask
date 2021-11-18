@@ -8,7 +8,7 @@ interface MaskDefaultOptions {
 export class MaskDefault implements MaskOptions {
   
   instance: MaskCore;
-  firstInput = 0;
+  firstInput?: number = undefined;
   maskGroups: any[];
   options: MaskDefaultOptions = {
     allowEmpty: false,
@@ -41,7 +41,7 @@ export class MaskDefault implements MaskOptions {
   format(data: MaskData) {
     let
       val = '',
-      firstInvalidIndex = 0,
+      firstInvalidIndex: number = -1,
       lastValidIndex = 0
     ;
 
@@ -51,15 +51,15 @@ export class MaskDefault implements MaskOptions {
 
         val = val + (valid ? data.input[index] : '_');
 
-        if (valid)lastValidIndex = index + 1;
-        else if (!firstInvalidIndex) firstInvalidIndex = index;
+        if (valid) lastValidIndex = index + 1;
+        else if (firstInvalidIndex === -1) firstInvalidIndex = index;
 
-        if (!this.firstInput) this.firstInput = index;
+        if (this.firstInput === undefined) this.firstInput = index;
       } else val = val + m;
     });
 
     data.output = val;
-    data.cursorPosition = data.delete ? Math.max(this.firstInput, data.cursorPosition) : Math.max(firstInvalidIndex, lastValidIndex);
+    data.cursorPosition = data.delete ? Math.max(this.firstInput as number, data.cursorPosition) : Math.max(firstInvalidIndex, lastValidIndex);
   }
 
   blur(data: MaskData) {
