@@ -1,5 +1,11 @@
-## [0.4.1](https://github.com/ionited/mask/compare/0.4.0...0.4.1) (2021-11-18)
+## [0.4.2](https://github.com/ionited/mask/compare/0.4.1...0.4.2) (2021-11-18)
 
+### Bug Fixes
+
+* avoid set null values ([3d7f3fd](https://github.com/ionited/mask/commit/3d7f3fd2ac7723d14909ec1fff2609f75289e13d))
+
+
+## [0.4.1](https://github.com/ionited/mask/compare/0.4.0...0.4.1) (2021-11-18)
 
 ### Bug Fixes
 
@@ -8,6 +14,7 @@
 * **MaskCore:** ignore past event ([7422eab](https://github.com/ionited/mask/commit/7422eaba1d67776cc163b5c5a0e61cf38373ff6c))
 * **MaskCore:** always dispatch event ([ae3ff7c](https://github.com/ionited/mask/commit/ae3ff7cde145235078631917177279b9c2034edd))
 * **MaskCore:** always update ([75a3ffb](https://github.com/ionited/mask/commit/75a3ffbcf6c87e5cd803118fbf9584af48e57e29))
+
 
 # 0.4.0 (2021-10-06)
 
