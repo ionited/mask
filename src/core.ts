@@ -42,7 +42,7 @@ export class MaskCore {
       input: '',
       inputRaw: '',
       output: ''
-    };
+    }
 
     this.isMobile = /Android/i.test(navigator.userAgent);
 
