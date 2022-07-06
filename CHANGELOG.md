@@ -1,3 +1,10 @@
+## [0.4.4](https://github.com/ionited/mask/compare/0.4.3...0.4.4) (2022-07-06)
+
+### Bug Fixes
+
+* **MaskNumber:** delete closest number ([e3aeddf](https://github.com/ionited/mask/commit/e3aeddfdba3ab054d382621e624ce12ed6596b2a))
+* use slice instead of substring ([a1d0ff2](https://github.com/ionited/mask/commit/a1d0ff25706c82aeae0dc8cd368b8b9b75683fda))
+
 ## [0.4.3](https://github.com/ionited/mask/compare/0.4.2...0.4.3) (2022-07-06)
 
 ### Bug Fixes
