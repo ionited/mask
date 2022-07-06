@@ -16,7 +16,7 @@ export interface MaskData {
   focus: boolean;
   input: string;
   inputRaw: string;
-  output: string | null;
+  output: string;
 }
 
 export class MaskCore {
@@ -119,7 +119,7 @@ export class MaskCore {
   }
 
   private focus() {
-    this.reset();
+    this.data.input = this.el.value;
 
     this.options.focus && this.options.focus(this.data);
 
@@ -127,7 +127,7 @@ export class MaskCore {
   }
 
   private blur() {
-    this.reset();
+    this.data.input = this.el.value;
     
     this.options.blur && this.options.blur(this.data);
 
@@ -141,16 +141,11 @@ export class MaskCore {
   }
 
   private mouseout() {
-    this.reset();
+    this.data.input = this.el.value;
 
     this.options.mouseout && this.options.mouseout(this.data);
 
     this.update(false, false);
-  }
-
-  private reset() {
-    this.data.input = this.el.value;
-    this.data.output = null;
   }
 
   private setCursorPosition(index: number, timeout?: number) {
