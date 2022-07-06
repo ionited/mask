@@ -1,11 +1,9 @@
-## [0.4.5](https://github.com/ionited/mask/compare/0.4.3...0.4.5) (2022-07-06)
+## [0.4.5](https://github.com/ionited/mask/compare/0.4.4...0.4.5) (2022-07-06)
 
 ### Bug Fixes
 
 * avoid error with empty values ([eb31bcb](https://github.com/ionited/mask/commit/eb31bcb32e9bc0b642a5c25b4844e8f9c1358c32))
 * default values ([f08f28c](https://github.com/ionited/mask/commit/f08f28c77f736550097b25b0b42eaa2a6b106309))
-* **MaskNumber:** delete closest number ([e3aeddf](https://github.com/ionited/mask/commit/e3aeddfdba3ab054d382621e624ce12ed6596b2a))
-* use slice instead of substring ([a1d0ff2](https://github.com/ionited/mask/commit/a1d0ff25706c82aeae0dc8cd368b8b9b75683fda))
 
 ## [0.4.4](https://github.com/ionited/mask/compare/0.4.3...0.4.4) (2022-07-06)
 
