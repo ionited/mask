@@ -25,13 +25,13 @@
   },
   "homepage": "https://github.com/ionited/mask#readme",
   "devDependencies": {
-    "conventional-changelog-cli": "^2.1.1",
-    "rollup": "^2.58.0",
+    "conventional-changelog-cli": "^2.2.2",
+    "rollup": "^2.75.7",
     "rollup-plugin-cleaner": "^1.0.0",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.30.0",
-    "typescript": "^4.4.3"
+    "rollup-plugin-typescript2": "^0.32.1",
+    "typescript": "^4.7.4"
   },
   "files": [
     "core/**/*",
