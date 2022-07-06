@@ -29,7 +29,6 @@ export class MaskDefault implements MaskOptions {
       }
 
     this.maskGroups = this.getMaskGroups();
-
     this.instance = new MaskCore(el, this);
   }
 

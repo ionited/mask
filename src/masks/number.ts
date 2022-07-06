@@ -36,14 +36,13 @@ export class MaskNumber implements MaskOptions {
         thousandPoint: options.thousandPoint ?? '.'
       }
 
-    this.instance = new MaskCore(el, this);
     this.default = `0${this.getDecimal()}`;
+    this.instance = new MaskCore(el, this);
   }
 
   init(data: MaskData) {
     if (data.input || !this.options.allowEmpty) {
-      if (parseFloat(data.input) === 0) return data.output = '';
-      else if (data.input) {
+      if (data.input) {
         data.input = data.input.replace(/\./g, this.options.decimalPoint);
       
         const decimal = data.input.indexOf(this.options.decimalPoint);
@@ -52,6 +51,8 @@ export class MaskNumber implements MaskOptions {
       } else data.input = `0${this.getDecimal()}`;
     
       this.format(data);
+
+      if (this.options.allowEmpty && data.output === this.default) data.output = '';
     }
   }
 
