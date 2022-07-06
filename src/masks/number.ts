@@ -96,7 +96,11 @@ export class MaskNumber implements MaskOptions {
       data.cursorPosition = data.delete ? Math.min(data.cursorPosition, cursorPosition) : cursorPosition;
 
       if (data.cursorPosition < this.options.prefix.length + 1) data.cursorPosition = this.options.prefix.length + (integer ? 0 : 1);
-    } else if (this.options.end) data.cursorPosition = data.output.length - (data.inputRaw.length - data.cursorPosition);
+    } else if (this.options.end) {
+      data.cursorPosition = data.output.length - (data.inputRaw.length - data.cursorPosition);
+
+      if (data.output[data.cursorPosition - 1].match(/[^0-9]/)) data.cursorPosition = data.cursorPosition - 1;
+    }
   }
 
   blur(data: MaskData) {
