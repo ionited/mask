@@ -99,7 +99,7 @@ export class MaskNumber implements MaskOptions {
     } else if (this.options.end) {
       data.cursorPosition = data.output.length - (data.inputRaw.length - data.cursorPosition);
 
-      if (data.output[data.cursorPosition - 1].match(/[^0-9]/)) data.cursorPosition = data.cursorPosition - 1;
+      if (data.output[data.cursorPosition - 1]?.match(/[^0-9]/)) data.cursorPosition = data.cursorPosition - 1;
     }
   }
 
