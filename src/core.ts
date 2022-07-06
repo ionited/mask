@@ -20,7 +20,6 @@ export interface MaskData {
 }
 
 export class MaskCore {
-
   el: HTMLInputElement;
   options: MaskOptions;
   data: MaskData;
@@ -87,8 +86,7 @@ export class MaskCore {
 
     this.data.delete = 
       (e as InputEvent).inputType === 'deleteContentBackward' ||
-      (e as InputEvent).inputType === 'deleteContentForward'
-    ;
+      (e as InputEvent).inputType === 'deleteContentForward';
 
     this.beforeInput();
 
@@ -162,5 +160,4 @@ export class MaskCore {
 
     this.el.dispatchEvent(e);
   }
-
 }

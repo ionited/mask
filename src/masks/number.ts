@@ -11,7 +11,6 @@ interface MaskNumberOptions {
 }
 
 export class MaskNumber implements MaskOptions {
-
   instance: MaskCore;
   options: MaskNumberOptions = {
     allowEmpty: false,
@@ -21,7 +20,7 @@ export class MaskNumber implements MaskOptions {
     end: false,
     prefix: '',
     thousandPoint: '.'
-  };
+  }
 
   private default = '';
 
@@ -35,7 +34,7 @@ export class MaskNumber implements MaskOptions {
         end: options.end ?? false,
         prefix: options.prefix ?? '',
         thousandPoint: options.thousandPoint ?? '.'
-      };
+      }
 
     this.instance = new MaskCore(el, this);
     this.default = `0${this.getDecimal()}`;
@@ -69,8 +68,7 @@ export class MaskNumber implements MaskOptions {
     } else {
       const
         input = data.input.replace(new RegExp(`[^0-9\\${this.options.decimalPoint}]`, 'g'), ''),
-        decimal = input.indexOf(this.options.decimalPoint)
-      ;
+        decimal = input.indexOf(this.options.decimalPoint);
 
       integer = input.substring(0, decimal === -1 ? input.length : decimal).replace(/^0+/, '');
 
@@ -83,8 +81,7 @@ export class MaskNumber implements MaskOptions {
       data.input = data.input.split('').reverse().join('')
         .replace(this.options.decimalPoint, '#')
         .split('').reverse().join('')
-        .replace(new RegExp(`\\${this.options.decimal}`, 'g'), '').replace('#', this.options.decimalPoint)
-      ;
+        .replace(new RegExp(`\\${this.options.decimal}`, 'g'), '').replace('#', this.options.decimalPoint);
     }
 
     data.output = (isNegative ? '-' : '') + this.options.prefix + data.input.replace(new RegExp(`\\d(?=(\\d{3})+\\${this.options.decimalPoint})`, 'g'), `$&${this.options.thousandPoint}`);

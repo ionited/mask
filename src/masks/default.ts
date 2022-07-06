@@ -6,14 +6,13 @@ interface MaskDefaultOptions {
 }
 
 export class MaskDefault implements MaskOptions {
-  
   instance: MaskCore;
   firstInput?: number = undefined;
   maskGroups: any[];
   options: MaskDefaultOptions = {
     allowEmpty: false,
     mask: ''
-  };
+  }
 
   private default = '';
 
@@ -22,12 +21,12 @@ export class MaskDefault implements MaskOptions {
       this.options = {
         allowEmpty: options.allowEmpty,
         mask: options.mask
-      };
+      }
     else
       this.options = {
         allowEmpty: false,
         mask: options
-      };
+      }
 
     this.maskGroups = this.getMaskGroups();
 
@@ -43,8 +42,7 @@ export class MaskDefault implements MaskOptions {
       val = '',
       firstInvalidIndex: number = -1,
       lastValidIndex = 0,
-      index = 0
-    ;
+      index = 0;
 
     this.maskGroups.forEach((m, maskIndex) => {
       if (m instanceof RegExp) {
@@ -106,5 +104,4 @@ export class MaskDefault implements MaskOptions {
 
     return maskGroups;
   }
-
 }
