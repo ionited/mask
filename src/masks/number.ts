@@ -2,6 +2,7 @@ import { MaskData, MaskCore, MaskOptions } from '../core';
 
 interface MaskNumberOptions {
   allowEmpty: boolean;
+  allowNegative: boolean;
   decimal: number;
   decimalPoint: string;
   end: boolean;
@@ -14,6 +15,7 @@ export class MaskNumber implements MaskOptions {
   instance: MaskCore;
   options: MaskNumberOptions = {
     allowEmpty: false,
+    allowNegative: false,
     decimal: 2,
     decimalPoint: ',',
     end: false,
@@ -27,6 +29,7 @@ export class MaskNumber implements MaskOptions {
     if (typeof options === 'object')
       this.options = {
         allowEmpty: options.allowEmpty,
+        allowNegative: options.allowNegative,
         decimal: options.decimal ?? 2,
         decimalPoint: options.decimalPoint ? options.decimalPoint : ',',
         end: options.end ?? false,
@@ -45,7 +48,7 @@ export class MaskNumber implements MaskOptions {
       
         const decimal = data.input.indexOf(this.options.decimalPoint);
 
-        data.input = `${data.input.substring(0, decimal === -1 ? data.input.length : decimal)}${this.getDecimal(decimal === -1 ? '' : data.input.substr(decimal + 1))}`;
+        data.input = `${data.input.substring(0, decimal === -1 ? data.input.length : decimal)}${this.getDecimal(decimal === -1 ? '' : data.input.substring(decimal + 1))}`;
       } else data.input = `0${this.getDecimal()}`;
     
       this.format(data);
@@ -53,6 +56,8 @@ export class MaskNumber implements MaskOptions {
   }
 
   format(data: MaskData) {
+    const isNegative = this.options.allowNegative && data.input.indexOf('-') != -1;
+
     let integer = '';
 
     if (this.options.end) {
@@ -82,7 +87,7 @@ export class MaskNumber implements MaskOptions {
       ;
     }
 
-    data.output = this.options.prefix + data.input.replace(new RegExp(`\\d(?=(\\d{3})+\\${this.options.decimalPoint})`, 'g'), `$&${this.options.thousandPoint}`);
+    data.output = (isNegative ? '-' : '') + this.options.prefix + data.input.replace(new RegExp(`\\d(?=(\\d{3})+\\${this.options.decimalPoint})`, 'g'), `$&${this.options.thousandPoint}`);
 
     if (data.focus) data.cursorPosition = this.options.end ? data.output.length : data.output.length - (this.options.decimal + (this.options.decimal ? 1 : 0));
     else if (data.cursorPosition < data.inputRaw.length - this.options.decimal) {
