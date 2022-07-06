@@ -58,6 +58,7 @@ Mask(el: string, { number: true | MaskNumberOptions });
 
 interface MaskNumberOptions {
   allowEmpty: boolean;
+  allowNegative: boolean;
   decimal: number;
   decimalPoint: string;
   end: boolean;
