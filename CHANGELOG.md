@@ -1,3 +1,15 @@
+## [0.4.3](https://github.com/ionited/mask/compare/0.4.2...0.4.3) (2022-07-06)
+
+### Bug Fixes
+
+* allowEmpty default value ([9ef0875](https://github.com/ionited/mask/commit/9ef0875f4ce178a1c31b55d07488d98999cbafc7))
+* string output required ([9b40271](https://github.com/ionited/mask/commit/9b40271ee0ff5f428235ab1cec1a146bcfb799b8))
+* substr to substring ([72b45fd](https://github.com/ionited/mask/commit/72b45fd491b830e431967c310e69589b23933f0e))
+
+### Features
+
+* **MaskNumber:** add allowNegative option ([9d28d65](https://github.com/ionited/mask/commit/9d28d657a2151af4a3a4ac446a1024a2056f1c9d))
+
 ## [0.4.2](https://github.com/ionited/mask/compare/0.4.1...0.4.2) (2021-11-18)
 
 ### Bug Fixes
