@@ -58,9 +58,9 @@ export class MaskNumber implements MaskOptions {
     if (this.options.end) {
       const input = data.input.replace(/[^0-9]/g, '');
 
-      integer = input.substr(0, input.length - this.options.decimal).replace(/^0+/, '');
+      integer = input.substring(0, input.length - this.options.decimal).replace(/^0+/, '');
 
-      data.input = `${integer ? integer : '0'}${this.getDecimal(input.substr(-this.options.decimal))}`;
+      data.input = `${integer ? integer : '0'}${this.getDecimal(input.substring(-this.options.decimal))}`;
     } else {
       const
         input = data.input.replace(new RegExp(`[^0-9\\${this.options.decimalPoint}]`, 'g'), ''),
@@ -71,8 +71,8 @@ export class MaskNumber implements MaskOptions {
 
       data.input = input ? (
         decimal === -1 ?
-          `${integer ? integer.substr(0, integer.length - (this.options.decimal ?? 0)) : '0'}${this.getDecimal(integer.substr(-(this.options.decimal ?? 0)))}` :
-          `${integer ? integer : '0'}${this.getDecimal(input.substr(decimal + 1))}`
+          `${integer ? integer.substring(0, integer.length - (this.options.decimal ?? 0)) : '0'}${this.getDecimal(integer.substring(-(this.options.decimal ?? 0)))}` :
+          `${integer ? integer : '0'}${this.getDecimal(input.substring(decimal + 1))}`
       ) : `0${this.getDecimal()}`;
 
       data.input = data.input.split('').reverse().join('')
@@ -109,6 +109,6 @@ export class MaskNumber implements MaskOptions {
   }
 
   private getDecimal(decimal = '') {
-    return `${this.options.decimal > 0 ? this.options.decimalPoint : ''}${(decimal.length > this.options.decimal ? decimal.substr(0, this.options.decimal) : decimal).padEnd(this.options.decimal, '0')}`;
+    return `${this.options.decimal > 0 ? this.options.decimalPoint : ''}${(decimal.length > this.options.decimal ? decimal.substring(0, this.options.decimal) : decimal).padEnd(this.options.decimal, '0')}`;
   }
 }
