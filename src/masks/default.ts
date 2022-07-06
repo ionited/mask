@@ -35,6 +35,7 @@ export class MaskDefault implements MaskOptions {
 
   init(data: MaskData) {
     if (data.input || !this.options.allowEmpty) this.format(data);
+    else data.output = '';
   }
 
   format(data: MaskData) {

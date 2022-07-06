@@ -42,7 +42,8 @@ export class MaskNumber implements MaskOptions {
 
   init(data: MaskData) {
     if (data.input || !this.options.allowEmpty) {
-      if (data.input) {
+      if (parseFloat(data.input) === 0) return data.output = '';
+      else if (data.input) {
         data.input = data.input.replace(/\./g, this.options.decimalPoint);
       
         const decimal = data.input.indexOf(this.options.decimalPoint);
