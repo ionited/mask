@@ -1,3 +1,9 @@
+## [0.4.6](https://github.com/ionited/mask/compare/0.4.5...0.4.6) (2022-09-28)
+
+### Features
+
+* remove beforeInput function ([84693ce](https://github.com/ionited/mask/commit/84693ceaddf4335b202ca14384363030e27b16d2))
+
 ## [0.4.5](https://github.com/ionited/mask/compare/0.4.4...0.4.5) (2022-07-06)
 
 ### Bug Fixes
