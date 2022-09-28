@@ -1,7 +1,6 @@
 export interface MaskOptions {
   instance: MaskCore;
   init?(data: MaskData): void;
-  beforeInput?(data: MaskData): void;
   input?(data: MaskData): void;
   format(data: MaskData): void;
   focus?(data: MaskData): void;
@@ -73,22 +72,12 @@ export class MaskCore {
     this.el.removeEventListener('mouseout', this.mouseoutFunc);
   }
 
-  private beforeInput() {
-    const cursorPosition = this.data.cursorPosition = this.el.selectionStart ?? 0;
-
-    this.options.beforeInput && this.options.beforeInput(this.data);
-
-    if (this.data.cursorPosition != cursorPosition) this.setCursorPosition(this.data.cursorPosition);
-  }
-
   private input(e: Event) {
     if ((e as any).__mask__) return e.preventDefault();
 
     this.data.delete = 
       (e as InputEvent).inputType === 'deleteContentBackward' ||
       (e as InputEvent).inputType === 'deleteContentForward';
-
-    this.beforeInput();
 
     this.data.inputRaw = this.data.input = (e.target as HTMLInputElement).value;
     const cursorPosition = this.data.cursorPosition = this.el.selectionStart ?? 0;

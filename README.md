@@ -81,7 +81,6 @@ The recommended way to do a new mask is writing a class that extends `MaskOption
 interface MaskOptions {
   instance: MaskCore;
   init?(data: MaskData): void;
-  beforeInput?(data: MaskData): void;
   input?(data: MaskData): void;
   format(data: MaskData): void;
   focus?(data: MaskData): void;
