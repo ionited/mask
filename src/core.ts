@@ -74,6 +74,7 @@ export class MaskCore {
 
   private input(e: Event) {
     if ((e as any).__mask__) return e.preventDefault();
+    else e.stopImmediatePropagation();
 
     this.data.delete = 
       (e as InputEvent).inputType === 'deleteContentBackward' ||
@@ -94,15 +95,15 @@ export class MaskCore {
 
     this.options.format(this.data);
 
-    this.update(focus);
+    this.update(focus, true, !focus);
   }
 
-  private update(focus = false, changeCursor = true) {
+  private update(focus = false, changeCursor = true, emit = true) {
     if (this.data.output !== null) this.el.value = this.data.output;
 
     if (changeCursor) this.setCursorPosition(this.data.cursorPosition, focus ? 25 : undefined);
 
-    this.dispatchEvent();
+    if (emit) this.dispatchEvent();
   }
 
   private focus() {
@@ -118,13 +119,13 @@ export class MaskCore {
     
     this.options.blur && this.options.blur(this.data);
 
-    this.update(false, false);
+    this.update(false, false, false);
   }
 
   private mouseover() {
     this.options.mouseover && this.options.mouseover(this.data);
 
-    this.update(false, false);
+    this.update(false, false, false);
   }
 
   private mouseout() {
@@ -132,7 +133,7 @@ export class MaskCore {
 
     this.options.mouseout && this.options.mouseout(this.data);
 
-    this.update(false, false);
+    this.update(false, false, false);
   }
 
   private setCursorPosition(index: number, timeout?: number) {
@@ -141,10 +142,8 @@ export class MaskCore {
   }
 
   private dispatchEvent() {
-    const e = document.createEvent('Event');
-    
-    e.initEvent('input', true, true);
-    (e as any).value = this.data.output;
+    const e = new Event('input');
+
     (e as any).__mask__ = true;
 
     this.el.dispatchEvent(e);
