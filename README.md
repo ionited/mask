@@ -31,14 +31,14 @@ Mask(document.querySelector('#input2'), { number: true }); // To use MaskNumber
 
 ### MaskDefault
 
-A simple mask that receives numbers, letters or other symbols
+A mask that receives a regex or a string with numbers, letters or other symbols
 
 ```ts
-Mask(el: string, { mask: string | MaskDefaultOptions });
+Mask(el: HTMLElement, { mask: RegExp | string | MaskDefaultOptions });
 
 interface MaskDefaultOptions {
   allowEmpty?: boolean;
-  mask: string;
+  mask: RegExp | string;
 }
 ```
 
@@ -54,7 +54,7 @@ Any other symbol is fixed.
 A mask for monetary and decimal values
 
 ```ts
-Mask(el: string, { number: true | MaskNumberOptions });
+Mask(el: HTMLElement, { number: true | MaskNumberOptions });
 
 interface MaskNumberOptions {
   allowEmpty: boolean;
