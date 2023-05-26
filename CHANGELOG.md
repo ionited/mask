@@ -1,3 +1,10 @@
+# [0.5.0](https://github.com/ionited/mask/compare/0.4.6...0.5.0) (2023-05-26)
+
+### Features
+
+* **MaskDefault:** regex support ([87d1a8d](https://github.com/ionited/mask/commit/87d1a8d262fc160b44699d231b80fdae22cfe249))
+* optimize event dispatch ([c8999a6](https://github.com/ionited/mask/commit/c8999a61736b63b4968da50c5bd62385cb6171b2))
+
 ## [0.4.6](https://github.com/ionited/mask/compare/0.4.5...0.4.6) (2022-09-28)
 
 ### Features
