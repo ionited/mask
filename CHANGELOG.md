@@ -1,3 +1,9 @@
+## [0.5.1](https://github.com/ionited/mask/compare/0.5.0...0.5.1) (2023-09-12)
+
+### Bug Fixes
+
+* input format on mouseover ([421df85](https://github.com/ionited/mask/commit/421df8525779de406acc191bb060c0f8877263ce))
+
 # [0.5.0](https://github.com/ionited/mask/compare/0.4.6...0.5.0) (2023-05-26)
 
 ### Features
