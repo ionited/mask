@@ -123,6 +123,8 @@ export class MaskCore {
   }
 
   private mouseover() {
+    this.data.input = this.el.value;
+
     this.options.mouseover && this.options.mouseover(this.data);
 
     this.update(false, false, false);

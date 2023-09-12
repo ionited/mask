@@ -114,7 +114,7 @@ export class MaskDefault implements MaskOptions {
   }
 
   mouseover(data: MaskData) {
-    if (this.options.allowEmpty) this.format(data);
+    this.format(data);
   }
 
   mouseout(data: MaskData) {
