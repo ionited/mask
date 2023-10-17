@@ -101,7 +101,7 @@ export class MaskCore {
   private update(focus = false, changeCursor = true, emit = true) {
     if (this.data.output !== null) this.el.value = this.data.output;
 
-    if (changeCursor) this.setCursorPosition(this.data.cursorPosition, focus ? 25 : undefined);
+    if (changeCursor) this.setCursorPosition(this.data.cursorPosition, focus ? 50 : undefined);
 
     if (emit) this.dispatchEvent();
   }
@@ -139,8 +139,9 @@ export class MaskCore {
   }
 
   private setCursorPosition(index: number, timeout?: number) {
+    this.el.setSelectionRange(index, index);
+
     if (timeout || (this.isMobile && this.data.delete)) setTimeout(() => this.el.setSelectionRange(index, index), timeout);
-    else this.el.setSelectionRange(index, index);
   }
 
   private dispatchEvent() {
