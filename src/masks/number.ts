@@ -7,6 +7,7 @@ interface MaskNumberOptions {
   decimalPoint: string;
   end: boolean;
   prefix: string;
+  suffix: string;
   thousandPoint: string;
 }
 
@@ -19,6 +20,7 @@ export class MaskNumber implements MaskOptions {
     decimalPoint: ',',
     end: false,
     prefix: '',
+    suffix: '',
     thousandPoint: '.'
   }
 
@@ -33,6 +35,7 @@ export class MaskNumber implements MaskOptions {
         decimalPoint: options.decimalPoint ? options.decimalPoint : ',',
         end: options.end ?? false,
         prefix: options.prefix ?? '',
+        suffix: options.suffix ?? '',
         thousandPoint: options.thousandPoint ?? '.'
       }
 
@@ -86,10 +89,10 @@ export class MaskNumber implements MaskOptions {
         .replace(new RegExp(`\\${this.options.decimal}`, 'g'), '').replace('#', this.options.decimalPoint);
     }
 
-    data.output = (isNegative ? '-' : '') + this.options.prefix + data.input.replace(new RegExp(`\\d(?=(\\d{3})+\\${this.options.decimalPoint})`, 'g'), `$&${this.options.thousandPoint}`);
+    data.output = (isNegative ? '-' : '') + this.options.prefix + data.input.replace(new RegExp(`\\d(?=(\\d{3})+\\${this.options.decimalPoint})`, 'g'), `$&${this.options.thousandPoint}`) + this.options.suffix;
 
-    if (data.focus) data.cursorPosition = this.options.end ? data.output.length : data.output.length - (this.options.decimal + (this.options.decimal ? 1 : 0));
-    else if (data.cursorPosition < data.inputRaw.length - this.options.decimal) {
+    if (data.focus) data.cursorPosition = this.options.end ? data.output.length - this.options.suffix.length : data.output.length - this.options.suffix.length - (this.options.decimal + (this.options.decimal ? 1 : 0));
+    else if (data.cursorPosition < data.inputRaw.length - this.options.decimal - this.options.suffix.length) {
       let cursorPosition = data.output.length - (data.inputRaw.length - data.cursorPosition);
 
       cursorPosition = cursorPosition < 0 ? 0 : cursorPosition;
@@ -102,6 +105,8 @@ export class MaskNumber implements MaskOptions {
 
       if (data.output[data.cursorPosition - 1]?.match(/[^0-9]/)) data.cursorPosition = data.cursorPosition - 1;
     }
+
+    if (this.options.suffix && data.cursorPosition >= data.output.length) data.cursorPosition = data.cursorPosition - this.options.suffix.length;
   }
 
   blur(data: MaskData) {

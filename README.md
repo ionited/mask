@@ -63,6 +63,7 @@ interface MaskNumberOptions {
   decimalPoint: string;
   end: boolean;
   prefix: string;
+  suffix: string;
   thousandPoint: string;
 }
 ```
