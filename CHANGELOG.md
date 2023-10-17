@@ -1,3 +1,13 @@
+# [0.6.0](https://github.com/ionited/mask/compare/0.5.1...0.6.0) (2023-10-17)
+
+### Bug Fixes
+
+* increase setCursorPosition timeout on focus ([de2cc2e](https://github.com/ionited/mask/commit/de2cc2ecfd0b1e26a1fb4717b7d41258f52a2ead))
+
+### Features
+
+* **MaskNumber:** add suffix option ([668ee05](https://github.com/ionited/mask/commit/668ee051390988acaf9fad2034d2d73ccfa78b4e))
+
 ## [0.5.1](https://github.com/ionited/mask/compare/0.5.0...0.5.1) (2023-09-12)
 
 ### Bug Fixes
