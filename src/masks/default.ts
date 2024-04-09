@@ -208,7 +208,7 @@ export class MaskDefault implements MaskOptions {
   private getRegex(pattern: string) {
     return new RegExp(pattern.split('').map(p => {
       if (p === '9') return '[0-9]{1}';
-      else if (p === 'A') return '[A-Za-zÀ-ÿ]';
+      else if (p === 'A') return '[A-Za-zÀ-ÿ]{1}';
       else if (['(', ')', '[', ']'].indexOf(p) !== -1) return `\\${p}`;
       else return p;
     }).join(''));
