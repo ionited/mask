@@ -1,3 +1,13 @@
+## [0.6.1](https://github.com/ionited/mask/compare/0.6.0...0.6.1) (2024-04-09)
+
+### Bug Fixes
+
+* regex letter limit ([90427c1](https://github.com/ionited/mask/commit/90427c159a381f0aab2572b825c2db9bb0845b01))
+
+### Features
+
+* add GitHub sponsors ([5fc3e58](https://github.com/ionited/mask/commit/5fc3e587973674e5e7de2b908bd8676d4e8702c5))
+
 # [0.6.0](https://github.com/ionited/mask/compare/0.5.1...0.6.0) (2023-10-17)
 
 ### Bug Fixes
