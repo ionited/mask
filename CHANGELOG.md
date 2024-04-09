@@ -1,3 +1,9 @@
+## [0.6.2](https://github.com/ionited/mask/compare/0.6.1...0.6.2) (2024-04-09)
+
+### Bug Fixes
+
+* inform it is a module ([96e6659](https://github.com/ionited/mask/commit/96e6659b285d95d89571db116dfd2a8566d9512f))
+
 ## [0.6.1](https://github.com/ionited/mask/compare/0.6.0...0.6.1) (2024-04-09)
 
 ### Bug Fixes
