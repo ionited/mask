@@ -5,6 +5,7 @@
   "main": "./dist/mask.js",
   "module": "./dist/mask.esm.js",
   "types": "./dist/mask.d.ts",
+  "type": "module",
   "scripts": {
     "start": "rollup -c -w",
     "build": "rollup -c",
