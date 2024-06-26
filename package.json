@@ -2,8 +2,9 @@
   "name": "@ionited/mask",
   "version": "0.6.2",
   "description": "Create your masks easily",
-  "main": "./dist/mask.js",
+  "main": "./dist/mask.esm.js",
   "module": "./dist/mask.esm.js",
+  "browser": "./dist/mask.js",
   "types": "./dist/mask.d.ts",
   "type": "module",
   "scripts": {
@@ -32,7 +33,7 @@
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.36.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.5.2"
   },
   "files": [
     "core/**/*",
