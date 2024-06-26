@@ -64,11 +64,11 @@ export default [{
 }, {
     input: './src/mask.ts',
     output: [{
-        file: pkg.module,
+        file: pkg.main,
         format: 'esm',
         sourcemap: true
     }, {
-        file: pkg.main,
+        file: pkg.browser,
         format: 'umd',
         name: 'window',
         sourcemap: true,
