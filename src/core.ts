@@ -15,6 +15,7 @@ export interface MaskData {
   focus: boolean;
   input: string;
   output: string;
+  outputRaw: any;
 }
 
 export class MaskCore {
@@ -38,7 +39,8 @@ export class MaskCore {
       delete: false,
       focus: false,
       input: '',
-      output: ''
+      output: '',
+      outputRaw: null
     }
 
     this.isMobile = /Android/i.test(navigator.userAgent);
@@ -98,6 +100,8 @@ export class MaskCore {
 
   private update(focus = false, changeCursor = true, emit = true) {
     if (this.data.output !== null) this.el.value = this.data.output;
+
+    (this.el as any).valueRaw = this.data.outputRaw;
 
     if (changeCursor) this.setCursorPosition(this.data.cursorPosition, focus ? 50 : undefined);
 

@@ -96,6 +96,7 @@ interface MaskData {
   focus: boolean;
   input: string;
   output: string;
+  outputRaw: any;
 }
 ```
 
