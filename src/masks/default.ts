@@ -106,7 +106,7 @@ export class MaskDefault implements MaskOptions {
 
       return g.value + placeholder;
     }).join('');
-    data.cursorPosition = data.delete ? Math.max(data.cursorPosition, firstValidPosition ?? 0) : cursorPosition;
+    data.cursor.start = data.cursor.end = data.delete ? Math.max(data.cursor.start, firstValidPosition ?? 0) : cursorPosition;
   }
 
   blur(data: MaskData) {

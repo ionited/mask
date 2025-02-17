@@ -10,7 +10,7 @@ export interface MaskOptions {
 }
 
 export interface MaskData {
-  cursorPosition: number;
+  cursor: { start: number, end: number };
   delete: boolean;
   focus: boolean;
   input: string;
@@ -35,7 +35,7 @@ export class MaskCore {
     this.options = options;
 
     this.data = {
-      cursorPosition: el.selectionStart ?? el.value.length,
+      cursor: { start: el.selectionStart ?? el.value.length, end: el.selectionEnd ?? el.value.length },
       delete: false,
       focus: false,
       input: '',
@@ -81,11 +81,16 @@ export class MaskCore {
       (e as InputEvent).inputType === 'deleteContentForward';
 
     this.data.input = (e.target as HTMLInputElement).value;
-    const cursorPosition = this.data.cursorPosition = this.el.selectionStart ?? 0;
+    const cursor = {
+      start: this.el.selectionStart ?? 0,
+      end: this.el.selectionEnd ?? 0
+    };
+
+    this.data.cursor = cursor;
 
     this.options.input && this.options.input(this.data);
 
-    if (this.data.cursorPosition != cursorPosition) this.setCursorPosition(this.data.cursorPosition);
+    if (this.data.cursor.start !== cursor.start || this.data.cursor.end !== cursor.end) this.setCursorPosition(this.data.cursor.start, this.data.cursor.end);
 
     this.format();
   }
@@ -103,7 +108,7 @@ export class MaskCore {
 
     (this.el as any).valueRaw = this.data.outputRaw;
 
-    if (changeCursor) this.setCursorPosition(this.data.cursorPosition, focus ? 50 : undefined);
+    if (changeCursor) this.setCursorPosition(this.data.cursor.start, this.data.cursor.end, focus ? 50 : undefined);
 
     if (emit) this.dispatchEvent();
   }
@@ -140,10 +145,10 @@ export class MaskCore {
     this.update(false, false, false);
   }
 
-  private setCursorPosition(index: number, timeout?: number) {
-    this.el.setSelectionRange(index, index);
+  private setCursorPosition(start: number, end: number, timeout?: number) {
+    this.el.setSelectionRange(start, end);
 
-    if (timeout || (this.isMobile && this.data.delete)) setTimeout(() => this.el.setSelectionRange(index, index), timeout);
+    if (timeout || (this.isMobile && this.data.delete)) setTimeout(() => this.el.setSelectionRange(start, end), timeout);
   }
 
   private dispatchEvent() {
