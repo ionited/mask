@@ -95,7 +95,6 @@ interface MaskData {
   delete: boolean;
   focus: boolean;
   input: string;
-  inputRaw: string;
   output: string;
 }
 ```

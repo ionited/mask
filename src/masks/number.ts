@@ -60,7 +60,9 @@ export class MaskNumber implements MaskOptions {
   }
 
   format(data: MaskData) {
-    const isNegative = this.options.allowNegative && data.input.indexOf('-') != -1;
+    const
+      isNegative = this.options.allowNegative && data.input.indexOf('-') != -1,
+      value =  data.input;
 
     let integer = '';
 
@@ -92,8 +94,8 @@ export class MaskNumber implements MaskOptions {
     data.output = (isNegative ? '-' : '') + this.options.prefix + data.input.replace(new RegExp(`\\d(?=(\\d{3})+\\${this.options.decimalPoint})`, 'g'), `$&${this.options.thousandPoint}`) + this.options.suffix;
 
     if (data.focus) data.cursorPosition = this.options.end ? data.output.length - this.options.suffix.length : data.output.length - this.options.suffix.length - (this.options.decimal + (this.options.decimal ? 1 : 0));
-    else if (data.cursorPosition < data.inputRaw.length - this.options.decimal - this.options.suffix.length) {
-      let cursorPosition = data.output.length - (data.inputRaw.length - data.cursorPosition);
+    else if (data.cursorPosition < value.length - this.options.decimal - this.options.suffix.length) {
+      let cursorPosition = data.output.length - (value.length - data.cursorPosition);
 
       cursorPosition = cursorPosition < 0 ? 0 : cursorPosition;
 
@@ -101,7 +103,7 @@ export class MaskNumber implements MaskOptions {
 
       if (data.cursorPosition < this.options.prefix.length + 1) data.cursorPosition = this.options.prefix.length + (integer ? 0 : 1);
     } else if (this.options.end) {
-      data.cursorPosition = data.output.length - (data.inputRaw.length - data.cursorPosition);
+      data.cursorPosition = data.output.length - (value.length - data.cursorPosition);
 
       if (data.output[data.cursorPosition - 1]?.match(/[^0-9]/)) data.cursorPosition = data.cursorPosition - 1;
     }

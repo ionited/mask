@@ -14,7 +14,6 @@ export interface MaskData {
   delete: boolean;
   focus: boolean;
   input: string;
-  inputRaw: string;
   output: string;
 }
 
@@ -39,7 +38,6 @@ export class MaskCore {
       delete: false,
       focus: false,
       input: '',
-      inputRaw: '',
       output: ''
     }
 
@@ -80,7 +78,7 @@ export class MaskCore {
       (e as InputEvent).inputType === 'deleteContentBackward' ||
       (e as InputEvent).inputType === 'deleteContentForward';
 
-    this.data.inputRaw = this.data.input = (e.target as HTMLInputElement).value;
+    this.data.input = (e.target as HTMLInputElement).value;
     const cursorPosition = this.data.cursorPosition = this.el.selectionStart ?? 0;
 
     this.options.input && this.options.input(this.data);
