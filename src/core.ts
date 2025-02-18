@@ -5,6 +5,7 @@ export interface MaskOptions {
   format(data: MaskData): void;
   focus?(data: MaskData): void;
   blur?(data: MaskData): void;
+  keydown?(e: KeyboardEvent, data: MaskData): void;
   mouseover?(data: MaskData): void;
   mouseout?(data: MaskData): void;
 }
@@ -25,6 +26,7 @@ export class MaskCore {
 
   private inputFunc = this.input.bind(this);
   private focusFunc = this.focus.bind(this);
+  private keydownFunc = this.keydown.bind(this);
   private blurFunc = this.blur.bind(this);
   private mouseoverFunc = this.mouseover.bind(this);
   private mouseoutFunc = this.mouseout.bind(this);
@@ -50,6 +52,7 @@ export class MaskCore {
 
   private init() {
     this.el.addEventListener('input', this.inputFunc);
+    this.el.addEventListener('keydown', this.keydownFunc);
     this.el.addEventListener('focus', this.focusFunc);
     this.el.addEventListener('blur', this.blurFunc);
     this.el.addEventListener('mouseover', this.mouseoverFunc);
@@ -66,6 +69,7 @@ export class MaskCore {
 
   destroy() {
     this.el.removeEventListener('input', this.inputFunc);
+    this.el.removeEventListener('keydown', this.keydownFunc);
     this.el.removeEventListener('focus', this.focusFunc);
     this.el.removeEventListener('blur', this.blurFunc);
     this.el.removeEventListener('mouseover', this.mouseoverFunc);
@@ -93,6 +97,22 @@ export class MaskCore {
     if (this.data.cursor.start !== cursor.start || this.data.cursor.end !== cursor.end) this.setCursorPosition(this.data.cursor.start, this.data.cursor.end);
 
     this.format();
+  }
+
+  private keydown(e: KeyboardEvent) {
+    this.data.input = (e.target as HTMLInputElement).value;
+    const cursor = {
+      start: this.el.selectionStart ?? 0,
+      end: this.el.selectionEnd ?? 0
+    };
+
+    this.data.cursor = cursor;
+
+    this.options.keydown && this.options.keydown(e, this.data);
+
+    if (this.data.cursor.start !== cursor.start || this.data.cursor.end !== cursor.end) this.setCursorPosition(this.data.cursor.start, this.data.cursor.end);
+  
+    this.update(false, true, true);
   }
 
   private format(focus = false) {
