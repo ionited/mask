@@ -1,4 +1,4 @@
-core/
-dist/
-masks/
-node_modules/
+/core/
+/dist/
+/masks/
+/node_modules/
