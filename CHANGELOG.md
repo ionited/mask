@@ -1,3 +1,13 @@
+# [0.7.0](https://github.com/ionited/mask/compare/0.6.2...0.7.0) (2025-02-18)
+
+### Features
+
+* add keydown listener ([d89fecf](https://github.com/ionited/mask/commit/d89fecf956635a099c265f03fb7e6fbdc0ec5227))
+* add MaskDate ([0a7e223](https://github.com/ionited/mask/commit/0a7e223712f30c22e9e827c15391989d21b58dae))
+* add outputRaw ([e12127e](https://github.com/ionited/mask/commit/e12127ec6aad93b6296a7cc2550cd421ea42aea7))
+* default output is esm ([b5215a1](https://github.com/ionited/mask/commit/b5215a18bfeb73d4729c686e6dcf0df49ac72580))
+* remove inputRaw ([48af970](https://github.com/ionited/mask/commit/48af970bf117ca72462e505b84997af53c48f7d0))
+
 ## [0.6.2](https://github.com/ionited/mask/compare/0.6.1...0.6.2) (2024-04-09)
 
 ### Bug Fixes
