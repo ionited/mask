@@ -9,6 +9,7 @@
 <body>
     <input id="um">
     <input id="dois">
+    <input id="tres">
 </body>
 
 <script src="../dist/mask.js"></script>
@@ -16,5 +17,6 @@
 <script>
     Mask(document.querySelector('input#um'), { mask: '(99) 9999-9999' });
     Mask(document.querySelector('input#dois'), { number: true });
+    Mask(document.querySelector('input#tres'), { date: 'DD/MM/YYYY' });
 </script>
 </html>

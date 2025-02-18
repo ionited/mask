@@ -2,7 +2,7 @@
 
 > Create your masks easily
 
-Mask comes with two basic implementations MaskDefault and MaskNumber, but you can use MaskCore to do your own masks implementation easily.
+Mask comes with three basic implementations MaskDefault, MaskNumber and MaskDate, but you can use MaskCore to do your own masks implementation easily.
 
 ## Quick start
 
@@ -27,6 +27,7 @@ To basic usage you can simply call:
 ```js
 Mask(document.querySelector('#input1'), { mask: '(99) 9999-9999' }); // To use MaskDefault
 Mask(document.querySelector('#input2'), { number: true }); // To use MaskNumber
+Mask(document.querySelector('#input3'), { date: 'DD/MM/YYYY' }); // To use MaskDate
 ```
 
 ### MaskDefault
@@ -67,6 +68,30 @@ interface MaskNumberOptions {
   thousandPoint: string;
 }
 ```
+
+### MaskDate
+
+A mask for date and time values
+
+```ts
+Mask(el: HTMLElement, { date: string | MaskDateOptions });
+
+interface MaskDateOptions {
+  format: string;
+  placeholders: { [key: string]: string };
+}
+```
+
+| Format    | Pattern | Description
+|:---------:|---------|-------------
+| YYYY      | 0000-∞  | Year
+| MM        | 01-12   | Month
+| DD        | 01-31   | Day
+| hh        | 00-23   | Hour
+| mm        | 00-59   | Minutes
+| ss        | 00-59   | Seconds
+
+Any other symbol is fixed.
 
 ### MaskCore
 

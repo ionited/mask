@@ -1,3 +1,4 @@
+import { MaskDate } from './masks/date';
 import { MaskDefault } from './masks/default';
 import { MaskNumber } from './masks/number';
 
@@ -13,3 +14,4 @@ Mask.register = function(name: string, mask: any) {
 
 Mask.register('mask', MaskDefault);
 Mask.register('number', MaskNumber);
+Mask.register('date', MaskDate);
